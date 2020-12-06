@@ -3,9 +3,11 @@ var resultContainer = document.querySelector("#result");
 var startBtn = document.querySelector("#start");
 var questioneEl = document.querySelector("#questions");
 var timerEl = document.querySelector("#timer");
-var h1El = document.querySelector("#startheader")
-var pEl = document.querySelector("#starttext")
-var ansBtn = document.querySelector("button");
+var h1El = document.querySelector("#startheader");
+var pEl = document.querySelector("#starttext");
+var anserA = document.querySelector("answerA");
+var anserB = document.querySelector("answerB");
+var anserC = document.querySelector("answerC");
 
 //my quiz array
 var myQuestions = [
@@ -38,7 +40,7 @@ var myQuestions = [
   }
 ];
 
-    
+
 //var questionNum = 0;
 
 
@@ -57,19 +59,24 @@ function presentQuiz(){
   qElem.textContent = myQuestions[0].question
 
 
-var answerChoice1 = document.querySelector("#answerA")
-answerChoice1.value = myQuestions[0].answers[0];
 
+var answerChoice1 = document.createElement("button");
+answerChoice1.setAttribute = ("id", "answerA")
+answerChoice1.textContent = myQuestions[0].answers.a
+answerA.append(answerChoice1);
+console.log("myQuestions[0].answers.a: ", myQuestions[0].answers.a)
 
+var answerChoice2 = document.createElement("button");
+answerChoice2.setAttribute = ("id", "answerB")
+answerChoice2.textContent = myQuestions[0].answers.b
+answerB.append(answerChoice2);
+console.log("myQuestions[0].answers.a: ", myQuestions[0].answers.b)
 
-var answerChoice2 = document.querySelector("#answerB")
-answerChoice2.value = myQuestions[0].answers[1];
-
-
-var answerChoice3 = document.querySelector("#answerC")
-answerChoice3.value = myQuestions[0].answers[2];
-
-  
+var answerChoice3 = document.createElement("button");
+answerChoice3.setAttribute = ("id", "answerC")
+answerChoice3.textContent = myQuestions[0].answers.c
+answerC.append(answerChoice3);
+console.log("myQuestions[0].answers.a: ", myQuestions[0].answers.c)
 
 
    // myQuestions.forEach(function(currentQ){
@@ -85,7 +92,6 @@ pEl.style.visibility = "hidden";
 //when click the start botton =addEventlistener
 //timer start and present the quiz
 startBtn.addEventListener("click", presentQuiz);
-
 
 
 
