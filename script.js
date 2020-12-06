@@ -44,24 +44,20 @@ timeEl.textContent = timeLeft;
 
 //presenting the quiz
 function presentQuiz(){
-    myQuestions.forEach(function(currentQ){
-        console.log(currentQ.q)
-    })
     var quiz = document.createElement("div");
-    quiz = myQuestions.forEach(questioneEl(currentQuestion)); 
-    timerEl--;
-    //form
-};
+    quiz = "";
+
+    myQuestions.forEach(function(currentQ){
+    });
+}//close tag for presentQuiz function
+
 
 //when click the start botton =addEventlistener
 //timer start and present the quiz
 startBtn.addEventListener("click", presentQuiz)
 
-//excute the function to show the quiz
-function presentQuiz(event){
-    event.prevenDefault();
-    questioneEl.textContent = myQuestions[i]
-}//close tag for presentQuiz function
+
+
 
 
 //when user click an answer
