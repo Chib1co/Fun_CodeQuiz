@@ -1,6 +1,6 @@
 var quizContainer = document.querySelector("#quiz");
 var resultContainer = document.querySelector("#result");
-var startBtn = document.querySelector("start");
+var startBtn = document.querySelector("#start");
 var questioneEl = document.querySelector("#questions");
 var timerEl = document.querySelector("#timer");
 
@@ -35,26 +35,36 @@ var myQuestions = [
   }
 ];
 
+var questionNum = 0;
+
+
 //timer 
-i = 0;
-var timeLeft = setTimeout(60000);
+
+var timeLeft = setIntereval(60000);
 timeEl.textContent = timeLeft;
 
     
 
 //presenting the quiz
 function presentQuiz(){
-    var quiz = document.createElement("div");
-    quiz = "";
+    //1. start the timer
+    //2. put the first question, answer choices
+  var qElem = document.createElement("h3")
+  qElem.setAttribute("id", "question")
+  qElem.textContent = myQuestions[0].question
+  questioneEl.append(qElem)
+  
 
-    myQuestions.forEach(function(currentQ){
-    });
+
+   // myQuestions.forEach(function(currentQ){
+    //3.Hide the start botton 
+ 
 }//close tag for presentQuiz function
 
 
 //when click the start botton =addEventlistener
 //timer start and present the quiz
-startBtn.addEventListener("click", presentQuiz)
+startBtn.addEventListener("click", presentQuiz);
 
 
 
