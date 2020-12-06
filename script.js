@@ -43,7 +43,7 @@ var questionNum = 0;
 var timeLeft = setIntereval(60000);
 timeEl.textContent = timeLeft;
 
-    
+
 
 //presenting the quiz
 function presentQuiz(){
