@@ -63,30 +63,29 @@ function presentQuiz(){
   qElem.textContent = myQuestions[questionNum].question
 
 
+  var answerChoice1 = document.createElement("button");
+  answerChoice1.setAttribute = ("id", "answerA")
+  answerChoice1.textContent = myQuestions[questionNum].answers.a
+  answerA.append(answerChoice1);
+  console.log(myQuestions[questionNum].answers.a)
 
-var answerChoice1 = document.createElement("button");
-answerChoice1.setAttribute = ("id", "answerA")
-answerChoice1.textContent = myQuestions[questionNum].answers.a
-answerA.append(answerChoice1);
-console.log(myQuestions[questionNum].answers.a)
+  var answerChoice2 = document.createElement("button");
+  answerChoice2.setAttribute = ("id", "answerB")
+  answerChoice2.textContent = myQuestions[questionNum].answers.b
+  answerB.append(answerChoice2);
+  console.log(myQuestions[questionNum].answers.b)
 
-var answerChoice2 = document.createElement("button");
-answerChoice2.setAttribute = ("id", "answerB")
-answerChoice2.textContent = myQuestions[questionNum].answers.b
-answerB.append(answerChoice2);
-console.log(myQuestions[questionNum].answers.b)
-
-var answerChoice3 = document.createElement("button");
-answerChoice3.setAttribute = ("id", "answerC")
-answerChoice3.textContent = myQuestions[questionNum].answers.c
-answerC.append(answerChoice3);
-console.log(myQuestions[questionNum].answers.c)
+  var answerChoice3 = document.createElement("button");
+  answerChoice3.setAttribute = ("id", "answerC")
+  answerChoice3.textContent = myQuestions[questionNum].answers.c
+  answerC.append(answerChoice3);
+  console.log(myQuestions[questionNum].answers.c)
 
    // myQuestions.forEach(function(currentQ){
     //3.Hide the start botton 
-startBtn.style.visibility = "hidden";
-h1El.style.visibility = "hidden";
-pEl.style.visibility = "hidden";
+  startBtn.style.visibility = "hidden";
+  h1El.style.visibility = "hidden";
+  pEl.style.visibility = "hidden";
 
 
 }//close tag for presentQuiz function
@@ -99,25 +98,27 @@ startBtn.addEventListener("click", presentQuiz);
 
 
 
-//when user click an answer
-answersEl.addEventListener("click", function(event){
-//showing next question
-console.log(myQuestions[1].question);
-console.log(myQuestions[1].answers.a);
+function showMoreQuestion(event){
+  //showing next question
+  console.log(myQuestions[1].question);
+  console.log(myQuestions[1].answers.a);
     questionNum++;
     console.log(questionNum)
-//if answer is incorrect = timer subtracked = condition
-//else if answer is correct = give the user a next question = condition
-console.log(event.target.innerText)
-console.log(myQuestions[0].correctAnswer);
-if(event.target.innerText === myQuestions[0].correctAnswer){
+  //if answer is incorrect = timer subtracked = condition
+  //else if answer is correct = give the user a next question = condition
+  console.log(event.target.innerText)
+  console.log(myQuestions[0].correctAnswer);
+  if(event.target.innerText === myQuestions[0].correctAnswer){
     answerResult.innerHTML = "correct answer"
-}else {
+  }else {
     answerResult.innerHTML = "wrong answer"
     //subtract timer
-}
+  }
 
-});
+};
+
+//when user click an answer
+answersEl.addEventListener("click", shoeMoreQuestion);
 
 
 
