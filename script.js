@@ -42,43 +42,45 @@ var myQuestions = [
 ];
 
 
-//var questionNum = 0;
+
 
 
 //timer 
-
 //var timeLeft = setIntereval(60000);
 //timeEl.textContent = timeLeft;
+var questionNum = 0;
+
 
 
 
 //presenting the quiz
 function presentQuiz(){
+   
+
     //1. start the timer
     //2. put the first question, answer choices
   var qElem = document.querySelector("#question")
-  qElem.textContent = myQuestions[0].question
+  qElem.textContent = myQuestions[questionNum].question
 
 
 
 var answerChoice1 = document.createElement("button");
 answerChoice1.setAttribute = ("id", "answerA")
-answerChoice1.textContent = myQuestions[0].answers.a
+answerChoice1.textContent = myQuestions[questionNum].answers.a
 answerA.append(answerChoice1);
-console.log("myQuestions[0].answers.a: ", myQuestions[0].answers.a)
+console.log(myQuestions[questionNum].answers.a)
 
 var answerChoice2 = document.createElement("button");
 answerChoice2.setAttribute = ("id", "answerB")
-answerChoice2.textContent = myQuestions[0].answers.b
+answerChoice2.textContent = myQuestions[questionNum].answers.b
 answerB.append(answerChoice2);
-console.log("myQuestions[0].answers.a: ", myQuestions[0].answers.b)
+console.log(myQuestions[questionNum].answers.b)
 
 var answerChoice3 = document.createElement("button");
 answerChoice3.setAttribute = ("id", "answerC")
-answerChoice3.textContent = myQuestions[0].answers.c
+answerChoice3.textContent = myQuestions[questionNum].answers.c
 answerC.append(answerChoice3);
-console.log("myQuestions[0].answers.a: ", myQuestions[0].answers.c)
-console.log(myQuestions[0].answers.c)
+console.log(myQuestions[questionNum].answers.c)
 
    // myQuestions.forEach(function(currentQ){
     //3.Hide the start botton 
@@ -102,6 +104,8 @@ answersEl.addEventListener("click", function(event){
 //showing next question
 console.log(myQuestions[1].question);
 console.log(myQuestions[1].answers.a);
+    questionNum++;
+    console.log(questionNum)
 //if answer is incorrect = timer subtracked = condition
 //else if answer is correct = give the user a next question = condition
 console.log(event.target.innerText)
