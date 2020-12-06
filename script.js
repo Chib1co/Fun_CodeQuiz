@@ -8,6 +8,8 @@ var pEl = document.querySelector("#starttext");
 var anserA = document.querySelector("answerA");
 var anserB = document.querySelector("answerB");
 var anserC = document.querySelector("answerC");
+var answersEl = document.querySelector("#answers")
+var answerResult = document.querySelector("#answerResult");
 
 //my quiz array
 var myQuestions = [
@@ -18,7 +20,7 @@ var myQuestions = [
         b: "Sheryl Sandberg",
         c: "Brendan Eich"
       },
-      correctAnswer: "c"
+      correctAnswer: "Brendan Eich"
     },
     {
       question: "Which one of these is a JavaScript package manager?",
@@ -27,16 +29,15 @@ var myQuestions = [
         b: "TypeScript",
         c: "npm"
       },
-      correctAnswer: "c"
+      correctAnswer: "npm"
     },
     { question: "Which tool can you use to ensure code quality?",
     answers: {
-      a: "Angular",
+      a: "ESLint",
       b: "jQuery",
       c: "RequireJS",
-      d: "ESLint"
     },
-    correctAnswer: "d"
+    correctAnswer: "ESLint"
   }
 ];
 
@@ -77,7 +78,7 @@ answerChoice3.setAttribute = ("id", "answerC")
 answerChoice3.textContent = myQuestions[0].answers.c
 answerC.append(answerChoice3);
 console.log("myQuestions[0].answers.a: ", myQuestions[0].answers.c)
-
+console.log(myQuestions[0].answers.c)
 
    // myQuestions.forEach(function(currentQ){
     //3.Hide the start botton 
@@ -97,18 +98,22 @@ startBtn.addEventListener("click", presentQuiz);
 
 
 //when user click an answer
-answers.addEventListener("click", function(event){
+answersEl.addEventListener("click", function(event){
 //if answer is incorrect = timer subtracked = condition
 //else if answer is correct = give the user a next question = condition
-if(event.target.matches(correctAnswer)){
-    alert("correct");
+console.log("I am here");
+console.log(event.target.innerText)
+console.log(myQuestions[0].correctAnswer);
+if(event.target.innerText === myQuestions[0].correctAnswer){
+    answerResult.innerHTML = "correct answer"
     //present next question
-    moveBy[i++];
+   
 }else {
-    alert("wrong");
-    timeLeft - 5000;
+    answerResult.innerHTML = "wrong answer"
+    //subtract timer
     //present next question
 }
+
 });
 
 
