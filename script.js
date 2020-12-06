@@ -99,19 +99,18 @@ startBtn.addEventListener("click", presentQuiz);
 
 //when user click an answer
 answersEl.addEventListener("click", function(event){
+//showing next question
+console.log(myQuestions[1].question);
+console.log(myQuestions[1].answers.a);
 //if answer is incorrect = timer subtracked = condition
 //else if answer is correct = give the user a next question = condition
-console.log("I am here");
 console.log(event.target.innerText)
 console.log(myQuestions[0].correctAnswer);
 if(event.target.innerText === myQuestions[0].correctAnswer){
     answerResult.innerHTML = "correct answer"
-    //present next question
-   
 }else {
     answerResult.innerHTML = "wrong answer"
     //subtract timer
-    //present next question
 }
 
 });
