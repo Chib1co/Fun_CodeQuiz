@@ -3,6 +3,9 @@ var resultContainer = document.querySelector("#result");
 var startBtn = document.querySelector("#start");
 var questioneEl = document.querySelector("#questions");
 var timerEl = document.querySelector("#timer");
+var h1El = document.querySelector("#startheader")
+var pEl = document.querySelector("#starttext")
+var ansBtn = document.querySelector("button");
 
 //my quiz array
 var myQuestions = [
@@ -35,13 +38,14 @@ var myQuestions = [
   }
 ];
 
-var questionNum = 0;
+    
+//var questionNum = 0;
 
 
 //timer 
 
-var timeLeft = setIntereval(60000);
-timeEl.textContent = timeLeft;
+//var timeLeft = setIntereval(60000);
+//timeEl.textContent = timeLeft;
 
 
 
@@ -49,16 +53,32 @@ timeEl.textContent = timeLeft;
 function presentQuiz(){
     //1. start the timer
     //2. put the first question, answer choices
-  var qElem = document.createElement("h3")
-  qElem.setAttribute("id", "question")
+  var qElem = document.querySelector("#question")
   qElem.textContent = myQuestions[0].question
-  questioneEl.append(qElem)
+
+
+var answerChoice1 = document.querySelector("#answerA")
+answerChoice1.value = myQuestions[0].answers[0];
+
+
+
+var answerChoice2 = document.querySelector("#answerB")
+answerChoice2.value = myQuestions[0].answers[1];
+
+
+var answerChoice3 = document.querySelector("#answerC")
+answerChoice3.value = myQuestions[0].answers[2];
+
   
 
 
    // myQuestions.forEach(function(currentQ){
     //3.Hide the start botton 
- 
+startBtn.style.visibility = "hidden";
+h1El.style.visibility = "hidden";
+pEl.style.visibility = "hidden";
+
+
 }//close tag for presentQuiz function
 
 
