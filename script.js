@@ -1,16 +1,18 @@
 var quizContainer = document.querySelector("#quiz");
 var resultContainer = document.querySelector("#result");
 var startBtn = document.querySelector("#start");
-var questioneEl = document.querySelector("#questions");
+var questionEl = document.querySelector("#questions");
+var qElem = document.querySelector("#question")
 var timerEl = document.querySelector("#timer");
 var h1El = document.querySelector("#startheader");
 var pEl = document.querySelector("#starttext");
-var anserA = document.querySelector("answerA");
-var anserB = document.querySelector("answerB");
-var anserC = document.querySelector("answerC");
+var answerA = document.querySelector("#answerA");
+var answerB = document.querySelector("#answerB");
+var answerC = document.querySelector("#answerC");
 var answersEl = document.querySelector("#answers")
 var answerResult = document.querySelector("#answerResult");
-var timeEl = document.querySelector("#timer");
+var formEl = document.querySelector("result");
+
 
 
 //my quiz array
@@ -45,42 +47,93 @@ var myQuestions = [
 
 
 
+function triggerGameOver(){
+
+    console.log('game over');
+
+    // var initial = document.createElement("input")
+    // initial.setAttribute("id", "inital")
+    // formEl.append(initial);
+    
+
+
+    var scores = JSON.parse(localStorage.getItem('scores'));
+
+    if(scores === null){
+        scores = [];
+    }
+
+    scores.push({
+        name: initial,
+        score: 20, // TO TOMOMI : change this pls
+    })
+
+    localStorage.setItem('scores', JSON.stringify(scores));
+
+    // hide the buttons
+    qElem.textContent = "";
+    answersEl.textContent = "";
+    answerResult.innerHTML = "";
 
 
 
+    // redirect
+   //window.location.href = '/highscores.html';
+
+}
 
 
+
+function showQuestion(index) {
+
+
+    if(index >= myQuestions.length){
+        // return will stop function execution
+        return triggerGameOver();
+    }
+
+    var question = myQuestions[index];
+    qElem.textContent = question.question;
+    
+    var answerChoice1 = document.createElement("button");
+    answerChoice1.setAttribute("id", "answerA");
+    answerChoice1.textContent = question.answers.a;
+    answerA.textContent = "";
+    answerA.append(answerChoice1);
+    console.log(myQuestions[questionNum].answers.a)
+    
+    var answerChoice2 = document.createElement("button");
+    answerChoice2.setAttribute("id", "answerB")
+    answerChoice2.textContent = question.answers.b
+    answerB.textContent = "";
+    answerB.append(answerChoice2);
+    console.log(myQuestions[questionNum].answers.b)
+    
+    var answerChoice3 = document.createElement("button");
+    answerChoice3.setAttribute("id", "answerC")
+    answerChoice3.textContent = question.answers.c
+    answerC.textContent = "";
+    answerC.append(answerChoice3);
+    console.log(myQuestions[questionNum].answers.c)
+
+
+}
 
 var questionNum = 0;
 
+
+
 //presenting the quiz
 function presentQuiz(){
-    var currentQuest = myQuestions[questionNum]
-    questionNum++;
+
+    showQuestion(questionNum)
+    
    
     //1. start the timer
     //2. put the first question, answer choices
-  var qElem = document.querySelector("#question")
   qElem.textContent = myQuestions[questionNum].question
 
 
-  var answerChoice1 = document.createElement("button");
-  answerChoice1.setAttribute = ("id", "answerA")
-  answerChoice1.textContent = currentQuest.answers.a
-  answerA.append(answerChoice1);
-  console.log(myQuestions[questionNum].answers.a)
-
-  var answerChoice2 = document.createElement("button");
-  answerChoice2.setAttribute = ("id", "answerB")
-  answerChoice2.textContent = currentQuest.answers.b
-  answerB.append(answerChoice2);
-  console.log(myQuestions[questionNum].answers.b)
-
-  var answerChoice3 = document.createElement("button");
-  answerChoice3.setAttribute = ("id", "answerC")
-  answerChoice3.textContent = currentQuest.answers.c
-  answerC.append(answerChoice3);
-  console.log(myQuestions[questionNum].answers.c)
 
    // myQuestions.forEach(function(currentQ){
     //3.Hide the start botton 
@@ -88,41 +141,59 @@ function presentQuiz(){
   h1El.style.visibility = "hidden";
   pEl.style.visibility = "hidden";
 
-  //timer 
-var secondsLeft = 15;
-
-function setTime() {
-    
-    console.log(secondsLeft)
-  var timerInterval = setInterval(function() {
-    secondsLeft--;
-    timeEl.textContent = secondsLeft;
-
-    if(secondsLeft === 0) {
-      clearInterval(timerInterval);
-    
-    }
-
-  }, 1000);
-}
-setTime();
-
-
-
-
-
-
 }//close tag for presentQuiz function
+
+  
 
 
 //when click the start botton =addEventlistener
 //timer start and present the quiz
-startBtn.addEventListener("click", presentQuiz);
+startBtn.addEventListener("click", function(){
+    //timer 
+  var secondsLeft = 15;
+
+  function setTime() {
+      var count = document.createElement("div");
+      count.setAttribute("id", "timer");
+
+    var timerInterval = setInterval(function() {
+      secondsLeft--;
+      count.textContent = secondsLeft;
+     timerEl.append(count);  
+
+  
+      if(secondsLeft === 0) {
+        clearInterval(timerInterval);
+        triggerGameOver();
+      
+      }
+  
+    }, 1000);
+  }
+  setTime();
+    presentQuiz();
+});
+
 
 
 
 //when user click an answer
-answersEl.addEventListener("click", presentQuiz);
+answersEl.addEventListener("click", function(event){
+    // check if correct
+    if(event.target.innerText === myQuestions[questionNum].correctAnswer){
+        answerResult.innerHTML = "correct answer"
+    }else {
+        answerResult.innerHTML = "wrong answer"
+        secondsLeft.textContent = secondsLeft -3;
+        setTime(); 
+
+    }
+
+    questionNum++
+    showQuestion(questionNum)
+
+
+});
 
   //showing next question
   //questionNum++;
@@ -130,12 +201,7 @@ answersEl.addEventListener("click", presentQuiz);
   //else if answer is correct = give the user a next question = condition
   //console.log(answerEl.innerText)
   console.log(myQuestions[0].correctAnswer);
-  //if(event.target.innerText === myQuestions[0].correctAnswer){
-    //answerResult.innerHTML = "correct answer"
-   //}else {
-    //answerResult.innerHTML = "wrong answer"
-    //subtract timer  
-//}
+
 
 //});
 
