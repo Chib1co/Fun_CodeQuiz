@@ -47,16 +47,14 @@ var myQuestions = [
 
 
 
+//when all the quiz has been answered || time = 0 then game is over 
+//user can save their initial and score = getItem
 function triggerGameOver(){
-
     console.log('game over');
 
     // var initial = document.createElement("input")
     // initial.setAttribute("id", "inital")
     // formEl.append(initial);
-    
-
-
     var scores = JSON.parse(localStorage.getItem('scores'));
 
     if(scores === null){
@@ -74,9 +72,6 @@ function triggerGameOver(){
     qElem.textContent = "";
     answersEl.textContent = "";
     answerResult.innerHTML = "";
-
-
-
     // redirect
    //window.location.href = '/highscores.html';
 
@@ -85,8 +80,6 @@ function triggerGameOver(){
 
 
 function showQuestion(index) {
-
-
     if(index >= myQuestions.length){
         // return will stop function execution
         return triggerGameOver();
@@ -115,28 +108,19 @@ function showQuestion(index) {
     answerC.textContent = "";
     answerC.append(answerChoice3);
     console.log(myQuestions[questionNum].answers.c)
-
-
 }
 
+//presenting the quiz
 var questionNum = 0;
 
-
-
-//presenting the quiz
 function presentQuiz(){
 
     showQuestion(questionNum)
     
-   
-    //1. start the timer
-    //2. put the first question, answer choices
   qElem.textContent = myQuestions[questionNum].question
-
-
-
-   // myQuestions.forEach(function(currentQ){
-    //3.Hide the start botton 
+   
+    //Hide the start botton 
+    //hide the start text
   startBtn.style.visibility = "hidden";
   h1El.style.visibility = "hidden";
   pEl.style.visibility = "hidden";
@@ -172,7 +156,7 @@ startBtn.addEventListener("click", function(){
   }
   setTime();
     presentQuiz();
-});
+});//closing tag for start button event listner
 
 
 
@@ -195,24 +179,7 @@ answersEl.addEventListener("click", function(event){
 
 });
 
-  //showing next question
-  //questionNum++;
-    //if answer is incorrect = timer subtracked = condition
-  //else if answer is correct = give the user a next question = condition
-  //console.log(answerEl.innerText)
-  console.log(myQuestions[0].correctAnswer);
-
-
-//});
 
 
 
 
-
-//when all the quiz has been answered || time = 0 then game is over 
-//user can save their initial and score = getItem
-function showScore(){
-    if(currentQuestion === myQuestions.length || timer === 0){
-        alert("Game Over")
-    }
-}
