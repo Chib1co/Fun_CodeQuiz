@@ -10,6 +10,8 @@ var anserB = document.querySelector("answerB");
 var anserC = document.querySelector("answerC");
 var answersEl = document.querySelector("#answers")
 var answerResult = document.querySelector("#answerResult");
+var timeEl = document.querySelector("#timer");
+
 
 //my quiz array
 var myQuestions = [
@@ -45,18 +47,17 @@ var myQuestions = [
 
 
 
-//timer 
-//var timeLeft = setIntereval(60000);
-//timeEl.textContent = timeLeft;
+
+
+
+
 var questionNum = 0;
-
-
-
 
 //presenting the quiz
 function presentQuiz(){
+    var currentQuest = myQuestions[questionNum]
+    questionNum++;
    
-
     //1. start the timer
     //2. put the first question, answer choices
   var qElem = document.querySelector("#question")
@@ -65,19 +66,19 @@ function presentQuiz(){
 
   var answerChoice1 = document.createElement("button");
   answerChoice1.setAttribute = ("id", "answerA")
-  answerChoice1.textContent = myQuestions[questionNum].answers.a
+  answerChoice1.textContent = currentQuest.answers.a
   answerA.append(answerChoice1);
   console.log(myQuestions[questionNum].answers.a)
 
   var answerChoice2 = document.createElement("button");
   answerChoice2.setAttribute = ("id", "answerB")
-  answerChoice2.textContent = myQuestions[questionNum].answers.b
+  answerChoice2.textContent = currentQuest.answers.b
   answerB.append(answerChoice2);
   console.log(myQuestions[questionNum].answers.b)
 
   var answerChoice3 = document.createElement("button");
   answerChoice3.setAttribute = ("id", "answerC")
-  answerChoice3.textContent = myQuestions[questionNum].answers.c
+  answerChoice3.textContent = currentQuest.answers.c
   answerC.append(answerChoice3);
   console.log(myQuestions[questionNum].answers.c)
 
@@ -86,6 +87,29 @@ function presentQuiz(){
   startBtn.style.visibility = "hidden";
   h1El.style.visibility = "hidden";
   pEl.style.visibility = "hidden";
+
+  //timer 
+var secondsLeft = 15;
+
+function setTime() {
+    
+    console.log(secondsLeft)
+  var timerInterval = setInterval(function() {
+    secondsLeft--;
+    timeEl.textContent = secondsLeft;
+
+    if(secondsLeft === 0) {
+      clearInterval(timerInterval);
+    
+    }
+
+  }, 1000);
+}
+setTime();
+
+
+
+
 
 
 }//close tag for presentQuiz function
@@ -97,28 +121,25 @@ startBtn.addEventListener("click", presentQuiz);
 
 
 
-
-function showMoreQuestion(event){
-  //showing next question
-  console.log(myQuestions[1].question);
-  console.log(myQuestions[1].answers.a);
-    questionNum++;
-    console.log(questionNum)
-  //if answer is incorrect = timer subtracked = condition
-  //else if answer is correct = give the user a next question = condition
-  console.log(event.target.innerText)
-  console.log(myQuestions[0].correctAnswer);
-  if(event.target.innerText === myQuestions[0].correctAnswer){
-    answerResult.innerHTML = "correct answer"
-  }else {
-    answerResult.innerHTML = "wrong answer"
-    //subtract timer
-  }
-
-};
-
 //when user click an answer
-answersEl.addEventListener("click", shoeMoreQuestion);
+answersEl.addEventListener("click", presentQuiz);
+
+  //showing next question
+  //questionNum++;
+    //if answer is incorrect = timer subtracked = condition
+  //else if answer is correct = give the user a next question = condition
+  //console.log(answerEl.innerText)
+  console.log(myQuestions[0].correctAnswer);
+  //if(event.target.innerText === myQuestions[0].correctAnswer){
+    //answerResult.innerHTML = "correct answer"
+   //}else {
+    //answerResult.innerHTML = "wrong answer"
+    //subtract timer  
+//}
+
+//});
+
+
 
 
 
