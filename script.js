@@ -80,7 +80,7 @@ function triggerGameOver(){
 
 
 function showQuestion(index) {
-    if(index >= myQuestions.length){
+    if(index >= myQuestions.length || secondsLeft === 0){
         // return will stop function execution
         return triggerGameOver();
     }
@@ -127,38 +127,34 @@ function presentQuiz(){
 
 }//close tag for presentQuiz function
 
-  
 
+var secondsLeft = 15;
+  //timer 
+ function setTime() {
+        var count = document.createElement("div");
+        count.setAttribute("id", "timer");
+  
+      var timerInterval = setInterval(function() {
+        secondsLeft--;
+        count.textContent = secondsLeft;
+       timerEl.append(count);  
+  
+    
+        if(secondsLeft === 0) {
+          clearInterval(timerInterval);
+        
+        }
+    
+      }, 1000);
+}
 
 //when click the start botton =addEventlistener
 //timer start and present the quiz
-startBtn.addEventListener("click", function(){
-    //timer 
-  var secondsLeft = 15;
+ startBtn.addEventListener("click", function(){
 
-  function setTime() {
-      var count = document.createElement("div");
-      count.setAttribute("id", "timer");
-
-    var timerInterval = setInterval(function() {
-      secondsLeft--;
-      count.textContent = secondsLeft;
-     timerEl.append(count);  
-
-  
-      if(secondsLeft === 0) {
-        clearInterval(timerInterval);
-        triggerGameOver();
-      
-      }
-  
-    }, 1000);
-  }
-  setTime();
+    setTime();
     presentQuiz();
-});//closing tag for start button event listner
-
-
+ });//closing tag for start button event listner
 
 
 //when user click an answer
@@ -168,9 +164,7 @@ answersEl.addEventListener("click", function(event){
         answerResult.innerHTML = "correct answer"
     }else {
         answerResult.innerHTML = "wrong answer"
-        secondsLeft.textContent = secondsLeft -3;
-        setTime(); 
-
+        secondsLeft -3;        
     }
 
     questionNum++
