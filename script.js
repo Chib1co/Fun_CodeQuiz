@@ -12,6 +12,7 @@ var answerC = document.querySelector("#answerC");
 var answersEl = document.querySelector("#answers")
 var answerResult = document.querySelector("#answerResult");
 var formEl = document.querySelector("#result");
+var scoreEl = document.querySelector("#score");
 
 formEl.style.visibility = "hidden";
 
@@ -47,7 +48,7 @@ var myQuestions = [
   }
 ];
 
-var secondsLeft = 15;
+var secondsLeft = 45;
 secondsLeft >= 0;
 
 
@@ -56,12 +57,11 @@ secondsLeft >= 0;
 //user can save their initial and score = getItem
 function triggerGameOver(){
     console.log('game over');
-
+    console.log(secondsLeft);
     formEl.style.visibility = "visible";
+    return;
 
-    // var initial = document.createElement("input")
-    // initial.setAttribute("id", "inital")
-    // formEl.append(initial);
+    scoreEl.textContent = "Your Score " + secondsLeft;  
     var scores = JSON.parse(localStorage.getItem('scores'));
 
     if(scores === null){
@@ -87,7 +87,7 @@ function triggerGameOver(){
 
 
 function showQuestion(index) {
-    if(index >= myQuestions.length || secondsLeft === 0){
+    if(index >= myQuestions.length){
         // return will stop function execution
         return triggerGameOver();
     }
@@ -143,12 +143,13 @@ function presentQuiz(){
   
       var timerInterval = setInterval(function() {
         secondsLeft--;
-        count.textContent = secondsLeft;
+        count.textContent ="Time Left " + secondsLeft;
        timerEl.append(count);  
   
     
         if(secondsLeft === 0) {
           clearInterval(timerInterval);
+          triggerGameOver();
         
         }
     
