@@ -13,9 +13,10 @@ var answersEl = document.querySelector("#answers")
 var answerResult = document.querySelector("#answerResult");
 var formEl = document.querySelector("#result");
 var scoreEl = document.querySelector("#score");
+var initialEl = document.querySelector("#initial");
 
 formEl.style.visibility = "hidden";
-
+questionEl.style.visibility ="hidden";
 
 
 //my quiz array
@@ -56,26 +57,33 @@ secondsLeft >= 0;
 //when all the quiz has been answered || time = 0 then game is over 
 //user can save their initial and score = getItem
 function triggerGameOver(){
+    
     console.log('game over');
     console.log(secondsLeft);
     formEl.style.visibility = "visible";
-    return;
+ 
+
+
+   
+
 
     scoreEl.textContent = "Your Score " + secondsLeft;  
-    var scores = JSON.parse(localStorage.getItem('scores'));
+    // var scores = {"name": initialEl, "scores":secondsLeft};
+    // localStorage.setItem('scores', JSON.parse(scores));
 
-    if(scores === null){
-        scores = [];
-    }
+    // if(scores === null){
+    //     scores = [];
+    // }
 
-    scores.push({
-        name: initial,
-        score: 20, // TO TOMOMI : change this pls
-    })
+    // scores.push({
+    //     name: initialEl,
+    //     scores: secondsLeft
+    // })
 
-    localStorage.setItem('scores', JSON.stringify(scores));
+    // localStorage.setItem('scores', JSON.stringify(scores));
 
     // hide the buttons
+    
     qElem.textContent = "";
     answersEl.textContent = "";
     answerResult.innerHTML = "";
@@ -89,8 +97,11 @@ function triggerGameOver(){
 function showQuestion(index) {
     if(index >= myQuestions.length){
         // return will stop function execution
-        return triggerGameOver();
+        triggerGameOver();
+        return 
     }
+
+    questionEl.style.visibility ="visible";
 
     var question = myQuestions[index];
     qElem.textContent = question.question;
@@ -121,7 +132,8 @@ function showQuestion(index) {
 var questionNum = 0;
 
 function presentQuiz(){
-
+    questionEl.style.visibility ="visible";
+   
     showQuestion(questionNum)
     
   qElem.textContent = myQuestions[questionNum].question
@@ -149,11 +161,12 @@ function presentQuiz(){
     
         if(secondsLeft === 0) {
           clearInterval(timerInterval);
-          triggerGameOver();
+          //triggerGameOver();
         
         }
     
       }, 1000);
+    
 }
 
 //when click the start botton =addEventlistener
