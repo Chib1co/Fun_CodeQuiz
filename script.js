@@ -11,7 +11,9 @@ var answerB = document.querySelector("#answerB");
 var answerC = document.querySelector("#answerC");
 var answersEl = document.querySelector("#answers")
 var answerResult = document.querySelector("#answerResult");
-var formEl = document.querySelector("result");
+var formEl = document.querySelector("#result");
+
+formEl.style.visibility = "hidden";
 
 
 
@@ -45,12 +47,17 @@ var myQuestions = [
   }
 ];
 
+var secondsLeft = 15;
+secondsLeft >= 0;
+
 
 
 //when all the quiz has been answered || time = 0 then game is over 
 //user can save their initial and score = getItem
 function triggerGameOver(){
     console.log('game over');
+
+    formEl.style.visibility = "visible";
 
     // var initial = document.createElement("input")
     // initial.setAttribute("id", "inital")
@@ -128,7 +135,7 @@ function presentQuiz(){
 }//close tag for presentQuiz function
 
 
-var secondsLeft = 15;
+
   //timer 
  function setTime() {
         var count = document.createElement("div");
@@ -164,7 +171,8 @@ answersEl.addEventListener("click", function(event){
         answerResult.innerHTML = "correct answer"
     }else {
         answerResult.innerHTML = "wrong answer"
-        secondsLeft -3;        
+        secondsLeft = secondsLeft -3;    
+        console.log(secondsLeft)    
     }
 
     questionNum++
