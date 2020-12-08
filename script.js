@@ -14,6 +14,9 @@ var answerResult = document.querySelector("#answerResult");
 var formEl = document.querySelector("#result");
 var scoreEl = document.querySelector("#score");
 var initialEl = document.querySelector("#initial");
+var timerInterval;
+
+
 
 formEl.style.visibility = "hidden";
 questionEl.style.visibility ="hidden";
@@ -51,6 +54,8 @@ var myQuestions = [
 
 var secondsLeft = 45;
 secondsLeft >= 0;
+var count = document.createElement("div");
+    count.setAttribute("id", "timer"); 
 
 
 
@@ -59,15 +64,11 @@ secondsLeft >= 0;
 function triggerGameOver(){
     
     console.log('game over');
-    console.log(secondsLeft);
     formEl.style.visibility = "visible";
- 
-
-
-   
-
+    count.style.visibility = "hidden"
 
     scoreEl.textContent = "Your Score " + secondsLeft;  
+
     // var scores = {"name": initialEl, "scores":secondsLeft};
     // localStorage.setItem('scores', JSON.parse(scores));
 
@@ -87,16 +88,17 @@ function triggerGameOver(){
     qElem.textContent = "";
     answersEl.textContent = "";
     answerResult.innerHTML = "";
-    // redirect
-   //window.location.href = '/highscores.html';
+   
 
 }
 
 
 
 function showQuestion(index) {
-    if(index >= myQuestions.length){
+    if(index >= myQuestions.length || secondsLeft === 0){
+            
         // return will stop function execution
+        clearInterval(timerInterval);   
         triggerGameOver();
         return 
     }
@@ -150,22 +152,15 @@ function presentQuiz(){
 
   //timer 
  function setTime() {
-        var count = document.createElement("div");
-        count.setAttribute("id", "timer");
+
+    
   
-      var timerInterval = setInterval(function() {
+  timerInterval = setInterval(function() {
         secondsLeft--;
         count.textContent ="Time Left " + secondsLeft;
        timerEl.append(count);  
   
-    
-        if(secondsLeft === 0) {
-          clearInterval(timerInterval);
-          //triggerGameOver();
-        
-        }
-    
-      }, 1000);
+    }, 1000);
     
 }
 
