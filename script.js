@@ -15,12 +15,13 @@ var formEl = document.querySelector("#result");
 var scoreEl = document.querySelector("#score");
 var initialEl = document.querySelector("#initial");
 var timerInterval;
+var saveBtn = document.querySelector("#saveScore");
 
 
 
 formEl.style.visibility = "hidden";
 questionEl.style.visibility ="hidden";
-
+saveBtn.style.visibility = "hidden";
 
 //my quiz array
 var myQuestions = [
@@ -66,32 +67,27 @@ function triggerGameOver(){
     console.log('game over');
     formEl.style.visibility = "visible";
     count.style.visibility = "hidden"
+    saveBtn.style.visibility = "visible";
+
+  
 
     scoreEl.textContent = "Your Score " + secondsLeft;  
 
-    // var scores = {"name": initialEl, "scores":secondsLeft};
-    // localStorage.setItem('scores', JSON.parse(scores));
-
-    // if(scores === null){
-    //     scores = [];
-    // }
-
-    // scores.push({
-    //     name: initialEl,
-    //     scores: secondsLeft
-    // })
-
-    // localStorage.setItem('scores', JSON.stringify(scores));
-
-    // hide the buttons
-    
     qElem.textContent = "";
     answersEl.textContent = "";
-    answerResult.innerHTML = "";
-   
+    answerResult.innerHTML = "";   
+
+    saveBtn.addEventListener("click", function(event){
+        event.preventDefault();
+    var scores = [];
+    scores = {"name":initialEl.Value, "score":secondsLeft};
+    localStorage.setItem("score", JSON.stringify(scores))
+     scores.push();
+    localStorage.getItem(JSON.parse(scores)) 
+
+    })
 
 }
-
 
 
 function showQuestion(index) {
