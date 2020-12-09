@@ -83,22 +83,22 @@ function triggerGameOver(){
 
     var results = localStorage.getItem("score")||[];
     console.log(results);
+    
     var scores = JSON.parse(results);
 
     var score = {"name": initialEl.value, "score": secondsLeft};
    
     scores.push(score);
-    localStorage.setItem("score", JSON.stringify(results));
-    console.log(results)
+    localStorage.setItem("score", JSON.stringify(scores));
 
     //create new button to redirect to high score page 
     //goggle how to redirect to a new URL page
 
-    window.location.href = "./highscore.html";
+    //window.location.href = "./highscore.html";
 
     });
 
-}
+};
 
 
 function showQuestion(index) {
