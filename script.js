@@ -80,12 +80,12 @@ function triggerGameOver(){
     saveBtn.addEventListener("click", function(event){
         event.preventDefault();
     var scores = [];
-    scores = {"name":initialEl.Value, "score":secondsLeft};
-    localStorage.setItem("score", JSON.stringify(scores))
-     scores.push();
-    localStorage.getItem(JSON.parse(scores)) 
+    var score = {"name": initialEl.value, "score": secondsLeft};
+    scores.push(score);
+    localStorage.setItem("score", JSON.stringify(scores));
+    
 
-    })
+    });
 
 }
 
