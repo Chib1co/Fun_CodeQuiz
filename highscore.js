@@ -17,7 +17,7 @@ goHome.addEventListener("click", function(){
 
 var clear = document.querySelector("#clear");
  clear.addEventListener("click", function(){
-  highscore = [];
+  highscore.innerHTML = [];
  });
 
 /* // Steps to get items from local storage and put them into the HTML.

@@ -77,18 +77,23 @@ function triggerGameOver(){
     answersEl.textContent = "";
     answerResult.innerHTML = "";   
 
-    saveBtn.addEventListener("click", function(event){
+  
+  saveBtn.addEventListener("click", function(event){
         event.preventDefault();
 
-
-    var results = localStorage.getItem("score")||[];
-    console.log(results);
+    var highScores = JSON.parse(localStorage.getItem("score")) || [];
+    console.log(highScores)
     
-    var scores = JSON.parse(results);
 
-    var score = {"name": initialEl.value, "score": secondsLeft};
+    //var scores = localStorage.setItem("score", JSON.stringify([]));
+    
+
+    //var scores = JSON.parse(results);
+
+    var score = {name: initialEl.value, score: secondsLeft};
    
-    scores.push(score);
+    highScores.push(score);
+    console.log(highScores)
     localStorage.setItem("score", JSON.stringify(scores));
 
     //create new button to redirect to high score page 
@@ -96,7 +101,7 @@ function triggerGameOver(){
 
     //window.location.href = "./highscore.html";
 
-    });
+   });
 
 };
 
