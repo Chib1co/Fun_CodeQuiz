@@ -90,7 +90,7 @@ function triggerGameOver(){
 
     //var scores = JSON.parse(results);
 
-    var score = {name: initialEl.value, score: secondsLeft};
+    var score = {"name": initialEl.value, "score": secondsLeft};
    
     highScores.push(score);
     console.log(highScores)
