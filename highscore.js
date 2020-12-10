@@ -1,6 +1,6 @@
 
     var highscore = localStorage.getItem("score");
-     JSON.parse(highscore);
+     //JSON.parse(highscore);
      console.log(highscore) 
 
      var orderListEl = document.querySelector("#high_scores_list");

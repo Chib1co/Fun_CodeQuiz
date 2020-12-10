@@ -94,11 +94,9 @@ function triggerGameOver(){
    
     highScores.push(score);
     console.log(highScores)
-    localStorage.setItem("score", JSON.stringify(scores));
+    window.localStorage.setItem("score", JSON.stringify(highscores));
 
-    //create new button to redirect to high score page 
-    //goggle how to redirect to a new URL page
-
+    //redirectiong to new html for highscore list
     //window.location.href = "./highscore.html";
 
    });
