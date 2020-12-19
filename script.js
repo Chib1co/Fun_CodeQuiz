@@ -60,8 +60,7 @@ var count = document.createElement("div");
 
 
 
-//when all the quiz has been answered || time = 0 then game is over 
-//user can save their initial and score = getItem
+
 function triggerGameOver(){
     
     console.log('game over');
@@ -93,8 +92,8 @@ function triggerGameOver(){
     var score = {"name": initialEl.value, "score": secondsLeft};
    
     highScores.push(score);
-    console.log(highScores)
-    window.localStorage.setItem("score", JSON.stringify(highscores));
+   
+    localStorage.setItem("score", JSON.stringify(highscores));
 
     //redirectiong to new html for highscore list
     //window.location.href = "./highscore.html";
