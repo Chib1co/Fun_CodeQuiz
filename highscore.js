@@ -1,14 +1,22 @@
 
     var highscore = localStorage.getItem("score");
-     //JSON.parse(highscore);
+for(var i=0; i<highscore.length; i++){
+    let result = JSON.parse(highscore);
      console.log(highscore) 
+     console.log(result)
+
+     result.sort();
 
      var orderListEl = document.querySelector("#high_scores_list");
-     for(var i=0; i<highscore.length; i++){
+     
          var listEl = document.createElement("li");
-         listEl.textContent = highscore[i];
+         listEl.textContent = "Name: " + result[i].name + "   Score: " + result[i].score;
+        
+         
+
          orderListEl.appendChild(listEl);
-     }
+         //orderListEl.appendChild(scorelistEl);
+}
 
 var goHome = document.querySelector("#goHome");
 goHome.addEventListener("click", function(){
