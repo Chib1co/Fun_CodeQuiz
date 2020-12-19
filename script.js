@@ -93,10 +93,10 @@ function triggerGameOver(){
    
     highScores.push(score);
    
-    localStorage.setItem("score", JSON.stringify(highscores));
+    localStorage.setItem("score", JSON.stringify(highScores));
 
     //redirectiong to new html for highscore list
-    //window.location.href = "./highscore.html";
+    window.location.href = "./highscore.html";
 
    });
 
