@@ -84,11 +84,6 @@ function triggerGameOver(){
     console.log(highScores)
     
 
-    //var scores = localStorage.setItem("score", JSON.stringify([]));
-    
-
-    //var scores = JSON.parse(results);
-
     var score = {"name": initialEl.value, "score": secondsLeft};
    
     highScores.push(score);
