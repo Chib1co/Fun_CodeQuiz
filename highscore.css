@@ -5,13 +5,15 @@ body {
 
 
 
-.highscore{
+#highscore{
     display: block;
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
     background-color: salmon;
     text-align: center;
-    padding: 40px;
-    width: 250px;
+    width: 400px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
+

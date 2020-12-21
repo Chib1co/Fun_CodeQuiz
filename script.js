@@ -16,12 +16,12 @@ var scoreEl = document.querySelector("#score");
 var initialEl = document.querySelector("#initial");
 var timerInterval;
 var saveBtn = document.querySelector("#saveScore");
+let initialContainerEl = document.querySelector("#initial-container")
 
 
-
-formEl.style.visibility = "hidden";
-questionEl.style.visibility ="hidden";
-saveBtn.style.visibility = "hidden";
+formEl.style.display = "none";
+questionEl.style.display ="none";
+saveBtn.style.display = "none";
 
 //my quiz array
 var myQuestions = [
@@ -64,9 +64,9 @@ var count = document.createElement("div");
 function triggerGameOver(){
     
     console.log('game over');
-    formEl.style.visibility = "visible";
-    count.style.visibility = "hidden"
-    saveBtn.style.visibility = "visible";
+    formEl.style.display = "inherit";
+    count.style.display = "none"
+    saveBtn.style.display = "inherit";
 
   
 
@@ -107,13 +107,14 @@ function showQuestion(index) {
         return 
     }
 
-    questionEl.style.visibility ="visible";
+    questionEl.style.display ="inherit";
 
     var question = myQuestions[index];
     qElem.textContent = question.question;
     
     var answerChoice1 = document.createElement("button");
     answerChoice1.setAttribute("id", "answerA");
+    answerChoice1.setAttribute("class", "beautiful-btn");
     answerChoice1.textContent = question.answers.a;
     answerA.textContent = "";
     answerA.append(answerChoice1);
@@ -121,13 +122,15 @@ function showQuestion(index) {
     
     var answerChoice2 = document.createElement("button");
     answerChoice2.setAttribute("id", "answerB")
+    answerChoice2.setAttribute("class", "beautiful-btn");
     answerChoice2.textContent = question.answers.b
     answerB.textContent = "";
     answerB.append(answerChoice2);
     console.log(myQuestions[questionNum].answers.b)
     
     var answerChoice3 = document.createElement("button");
-    answerChoice3.setAttribute("id", "answerC")
+    answerChoice3.setAttribute("id", "answerC");
+    answerChoice3.setAttribute("class", "beautiful-btn");
     answerChoice3.textContent = question.answers.c
     answerC.textContent = "";
     answerC.append(answerChoice3);
@@ -138,7 +141,7 @@ function showQuestion(index) {
 var questionNum = 0;
 
 function presentQuiz(){
-    questionEl.style.visibility ="visible";
+    questionEl.style.display ="inherit";
    
     showQuestion(questionNum)
     
@@ -146,9 +149,9 @@ function presentQuiz(){
    
     //Hide the start botton 
     //hide the start text
-  startBtn.style.visibility = "hidden";
-  h1El.style.visibility = "hidden";
-  pEl.style.visibility = "hidden";
+  initialContainerEl.style.display = "none";
+  h1El.style.display = "none";
+  pEl.style.display = "none";
 
 }//close tag for presentQuiz function
 
@@ -161,6 +164,10 @@ function presentQuiz(){
   
   timerInterval = setInterval(function() {
         secondsLeft--;
+        if(secondsLeft<=0){
+          triggerGameOver();
+          clearTimer();
+        }
         count.textContent ="Time Left " + secondsLeft;
        timerEl.append(count);  
   
@@ -168,8 +175,10 @@ function presentQuiz(){
     
 }
 
-//when click the start botton =addEventlistener
-//timer start and present the quiz
+function clearTimer() {
+  clearInterval(timerInterval)
+}
+ 
  startBtn.addEventListener("click", function(){
 
     setTime();

@@ -10,22 +10,25 @@
     <title>A code quiz</title>
 </head>
 <body>
-    <h1 id=startheader>Coding quiz challenge!</h1>
-    <p id= starttext>try coding quiz and you can leave your initial and score</p>
 
-  
-    <button id="start">Quiz Start</button>
+    <section id="initial-container">
+        
+        <h1 id=startheader>Coding quiz challenge!</h1>
+        <p id= starttext>try coding quiz and you can leave your initial and score</p>
+    
+        <button id="start" class="beautiful-btn">Quiz Start</button>
+    </section>
 
 <!--conteiner for the question and answers option-->
 
-<div class="conteiner d-inline-flex p-2 bd-highlight" id="questions">
+<div class="conteiner" id="questions">
     <div class="row">
     <h3 id="question"></h3>
     </div>
-    <div id="answers">
-    <div class="row" id="answerA"></div>
-    <div class="row" id="answerB"></div>
-    <div class="row" id="answerC"></div>
+    <div class="d-grid gap-3" id="answers">
+    <div class="answerbutton " id="answerA"></div>
+    <div class="answerbutton " id="answerB"></div>
+    <div class="answerbutton " id="answerC"></div>
     </div>
   <div class="row" id= "answerResult"></div>
     <!--score and initial input form-->
@@ -42,7 +45,7 @@
 
  
  <!--timer--> 
-    <div id="timer"></div>
+    <div class="position-fixed" id="timer"></div>
 <!--  
 score and initial input forms
     <form id="result">
