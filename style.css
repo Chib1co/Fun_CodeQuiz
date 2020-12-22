@@ -25,6 +25,7 @@ body {
     
 }
 
+
 .bg-dark{
     background-color: black;
 }
@@ -47,22 +48,47 @@ body {
 }
 
 
-#answers /*ansswer options 3 conteiner*/{
-    padding: 40px;
+#questions {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#question {
+    padding-bottom: 20px;
+}
+
+#answers{
+    font-size: 17px;
+    line-height: 1.17648;
+    font-weight: 400;
+    letter-spacing: -.022em;
 }
 
 
-
 #answerResult /*text telling if answer was correct or wrong*/{
+    font-family: 'Bangers', cursive;
     font-size: 22px;
+    line-height: 1.17648;
+    font-weight: 400;
+    letter-spacing: -.022em;
     margin-top: 20px;
     text-align: center;
 }
 
 #resultScore{
-    display: inline-block;
-    padding-bottom: 20px;
+    /* display: inline-block;
+    padding-bottom: 20px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    
 }
+
 #timer {
     font-size: 20px;
     margin-left: 20px;

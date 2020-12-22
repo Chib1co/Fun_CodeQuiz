@@ -80,7 +80,7 @@ function triggerGameOver(){
   saveBtn.addEventListener("click", function(event){
         event.preventDefault();
 
-    var highScores = JSON.parse(localStorage.getItem("score")) || [];
+    let highScores = JSON.parse(localStorage.getItem("score")) || [];
     console.log(highScores)
     
 
@@ -107,7 +107,7 @@ function showQuestion(index) {
         return 
     }
 
-    questionEl.style.display ="inherit";
+    questionEl.style.display ="flex";
 
     var question = myQuestions[index];
     qElem.textContent = question.question;
@@ -141,7 +141,7 @@ function showQuestion(index) {
 var questionNum = 0;
 
 function presentQuiz(){
-    questionEl.style.display ="inherit";
+    questionEl.style.display ="flex";
    
     showQuestion(questionNum)
     
@@ -150,8 +150,8 @@ function presentQuiz(){
     //Hide the start botton 
     //hide the start text
   initialContainerEl.style.display = "none";
-  h1El.style.display = "none";
-  pEl.style.display = "none";
+  // h1El.style.display = "none";
+  // pEl.style.display = "none";
 
 }//close tag for presentQuiz function
 
@@ -190,9 +190,9 @@ function clearTimer() {
 answersEl.addEventListener("click", function(event){
     // check if correct
     if(event.target.innerText === myQuestions[questionNum].correctAnswer){
-        answerResult.innerHTML = "correct answer"
+        answerResult.innerHTML = "correct answer!!"
     }else {
-        answerResult.innerHTML = "wrong answer"
+        answerResult.innerHTML = "wrong answer!!"
         secondsLeft = secondsLeft -3;    
         console.log(secondsLeft)    
     }
