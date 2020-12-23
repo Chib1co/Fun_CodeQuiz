@@ -4,7 +4,7 @@ Homework_Week4
 # Assignment Criteria
  * WHEN I click the start button
 
- ![Start Button](./screenshot/startBtn.png)
+  ![Start Button](./screenshot/startBtn.png)
 
  * THEN a timer starts and I am presented with a question
   ![Timer and Present the quiz](./screenshot/timerandquiz.png)
