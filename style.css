@@ -90,6 +90,15 @@ body {
 }
 
 #timer {
-    font-size: 20px;
-    margin-left: 20px;
+    white-space: nowrap;
+    display: inline;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 22px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
